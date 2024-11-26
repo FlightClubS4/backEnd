@@ -1,0 +1,74 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PepeToken
+    network: arbitrum-one
+    source:
+      address: "0x25d887Ce7a35172C62FeBFD67a1856F20FaEbB00"
+      abi: PepeToken
+      startBlock: 87701281
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - CallOFTReceivedSuccess
+        - MessageFailed
+        - NonContractAddress
+        - OwnershipTransferred
+        - ReceiveFromChain
+        - RetryMessageSuccess
+        - SendToChain
+        - SetDefaultFeeBp
+        - SetFeeBp
+        - SetFeeOwner
+        - SetMinDstGas
+        - SetPrecrime
+        - SetTrustedRemote
+        - SetTrustedRemoteAddress
+        - SetUseCustomAdapterParams
+        - Transfer
+      abis:
+        - name: PepeToken
+          file: ./abis/PepeToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: CallOFTReceivedSuccess(indexed uint16,bytes,uint64,bytes32)
+          handler: handleCallOFTReceivedSuccess
+        - event: MessageFailed(uint16,bytes,uint64,bytes,bytes)
+          handler: handleMessageFailed
+        - event: NonContractAddress(address)
+          handler: handleNonContractAddress
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: ReceiveFromChain(indexed uint16,indexed address,uint256)
+          handler: handleReceiveFromChain
+        - event: RetryMessageSuccess(uint16,bytes,uint64,bytes32)
+          handler: handleRetryMessageSuccess
+        - event: SendToChain(indexed uint16,indexed address,indexed bytes32,uint256)
+          handler: handleSendToChain
+        - event: SetDefaultFeeBp(uint16)
+          handler: handleSetDefaultFeeBp
+        - event: SetFeeBp(uint16,bool,uint16)
+          handler: handleSetFeeBp
+        - event: SetFeeOwner(address)
+          handler: handleSetFeeOwner
+        - event: SetMinDstGas(uint16,uint16,uint256)
+          handler: handleSetMinDstGas
+        - event: SetPrecrime(address)
+          handler: handleSetPrecrime
+        - event: SetTrustedRemote(uint16,bytes)
+          handler: handleSetTrustedRemote
+        - event: SetTrustedRemoteAddress(uint16,bytes)
+          handler: handleSetTrustedRemoteAddress
+        - event: SetUseCustomAdapterParams(bool)
+          handler: handleSetUseCustomAdapterParams
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/pepe-token.ts
