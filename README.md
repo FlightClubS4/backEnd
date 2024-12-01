@@ -11,7 +11,7 @@
 [https://thegraph.com/docs/zh/developing/creating-a-subgraph/#%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E5%90%88%E7%BA%A6%E7%9A%84%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E6%9D%BF](https://thegraph.com/docs/zh/developing/creating-a-subgraph/#%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E5%90%88%E7%BA%A6%E7%9A%84%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E6%9D%BF)
 
 ```plain
-//.airplane_arb_sepolia/README.md
+//.airplane_arb_sepolia/subgraph.yaml
 templates:...
 //.airplane_arb_sepolia/src/game-efactory.ts:handleFlightClub_GameCreated
 Game.bind(event.params.gameCA); 
