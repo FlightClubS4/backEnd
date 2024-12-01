@@ -1,0 +1,8 @@
+{
+  "arbitrum-sepolia": {
+    "ERC1967Proxy": {
+      "address": "0x41A7a15F319866265e05110772a3b53721499414",
+      "startBlock": 102370480
+    }
+  }
+}
