@@ -1,3 +1,4 @@
+import { Game } from "../generated/Game/Game"
 import {
   FlightClub_GameCreated as FlightClub_GameCreatedEvent,
   Initialized as InitializedEvent,
@@ -26,6 +27,7 @@ export function handleFlightClub_GameCreated(
   entity.transactionHash = event.transaction.hash
 
   entity.save()
+  Game.bind(event.params.gameCA);
 }
 
 export function handleInitialized(event: InitializedEvent): void {

@@ -32,3 +32,68 @@ type Upgraded @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+type FlightClubGame_Attack @entity(immutable: true) {
+  id: Bytes!
+  attacker: Bytes! # address
+  target: Int! # uint8
+  nonce: BigInt! # uint248
+  proof: [Bytes!]! # bytes32[]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FlightClubGame_ConfirmRaise @entity(immutable: true) {
+  id: Bytes!
+  confirmer: Bytes! # address
+  cellID: BigInt! # uint256
+  bet: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FlightClubGame_GameEnded @entity(immutable: true) {
+  id: Bytes!
+  winner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FlightClubGame_GuestJoin @entity(immutable: true) {
+  id: Bytes!
+  guest: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FlightClubGame_Raise @entity(immutable: true) {
+  id: Bytes!
+  raiser: Bytes! # address
+  cellID: BigInt! # uint256
+  bet: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FlightClubGame_respondAttack @entity(immutable: true) {
+  id: Bytes!
+  attackee: Bytes! # address
+  Game_id: Int! # uint8
+  status: Int! # uint8
+  nonce: BigInt! # uint240
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type GameInitialized @entity(immutable: true) {
+  id: Bytes!
+  version: BigInt! # uint64
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
