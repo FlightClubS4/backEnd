@@ -14,7 +14,7 @@
 //.airplane_arb_sepolia/subgraph.yaml
 templates:...
 //.airplane_arb_sepoliaV2/src/game-efactory.ts:handleFlightClub_GameCreated
-Game.bind(event.params.gameCA); 
+Game.create(event.params.gameCA);
 ```
 
 ### Query Examples
