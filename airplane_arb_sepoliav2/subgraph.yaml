@@ -8,7 +8,7 @@ dataSources:
     name: GameFactory
     network: arbitrum-sepolia
     source:
-      address: "0x13604405640d7d06B9C429FDbcd172412efd46ed"
+      address: "0x41A7a15F319866265e05110772a3b53721499414"
       abi: GameFactory
       startBlock: 102370473
     mapping:
@@ -17,19 +17,36 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - FlightClub_GameCreated
-        - Initialized
-        - OwnershipTransferred
-        - Upgraded
       abis:
         - name: GameFactory
           file: ./abis/GameFactory.json
       eventHandlers:
         - event: FlightClub_GameCreated(indexed address,indexed address,uint256)
           handler: handleFlightClub_GameCreated
-        - event: Initialized(uint64)
-          handler: handleInitialized
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
       file: ./src/game-factory.ts
+templates:
+  - kind: ethereum
+    name: Game
+    network: arbitrum-sepolia
+    source:
+      abi: Game
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+      # this entities don't save. just for reserve
+        - FlightClubGame_ConfirmRaise
+        - FlightClubGame_GameEnded
+        - FlightClubGame_GuestJoin
+      abis:
+        - name: Game
+          file: ./abis/Game.json
+      eventHandlers:
+        - event: FlightClubGame_ConfirmRaise(address,uint256,uint256)
+          handler: handleFlightClubGame_ConfirmRaise
+        - event: FlightClubGame_GameEnded(address)
+          handler: handleFlightClubGame_GameEnded
+        - event: FlightClubGame_GuestJoin(address)
+          handler: handleFlightClubGame_GuestJoin
+      file: ./src/game.ts

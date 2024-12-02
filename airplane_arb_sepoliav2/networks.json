@@ -3,6 +3,9 @@
     "GameFactory": {
       "address": "0x13604405640d7d06B9C429FDbcd172412efd46ed",
       "startBlock": 102370473
+    },
+    "Game": {
+      "address": "0xF6638F5312E91C0bA2E8d5017058D0C1e227F419"
     }
   }
 }

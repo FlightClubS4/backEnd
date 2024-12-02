@@ -1,0 +1,541 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "player", "type": "address" }
+    ],
+    "name": "FlightClubGame_FatTokenBalanceIsNotEnough",
+    "type": "error"
+  },
+  { "inputs": [], "name": "FlightClubGame_GameAlreadyEnded", "type": "error" },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "guest", "type": "address" }
+    ],
+    "name": "FlightClubGame_GuestAlreadyExists",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "uint8", "name": "target", "type": "uint8" },
+          { "internalType": "uint248", "name": "nonce", "type": "uint248" }
+        ],
+        "internalType": "struct Attack",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "name": "FlightClubGame_InvalidAttackOnChain",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "operator", "type": "address" }
+    ],
+    "name": "FlightClubGame_InvalidGuest",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "components": [
+              { "internalType": "uint8", "name": "target", "type": "uint8" },
+              { "internalType": "uint248", "name": "nonce", "type": "uint248" }
+            ],
+            "internalType": "struct Attack",
+            "name": "attack",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              { "internalType": "uint8", "name": "id", "type": "uint8" },
+              { "internalType": "uint8", "name": "status", "type": "uint8" },
+              { "internalType": "uint240", "name": "nonce", "type": "uint240" }
+            ],
+            "internalType": "struct Cell",
+            "name": "cell",
+            "type": "tuple"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "attackProof",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "cellProof",
+            "type": "bytes32[]"
+          }
+        ],
+        "internalType": "struct RaiseProof",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "name": "FlightClubGame_InvalidRaiseProof",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint8", "name": "cellID", "type": "uint8" },
+      { "internalType": "uint8", "name": "status", "type": "uint8" }
+    ],
+    "name": "FlightClubGame_InvalidTargetCell",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "operator", "type": "address" },
+      { "internalType": "address", "name": "creator", "type": "address" },
+      { "internalType": "address", "name": "guest", "type": "address" }
+    ],
+    "name": "FlightClubGame_OnlyPlayerCanOperate",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
+    ],
+    "name": "FlightClubGame_TooLateToConfirmRaise",
+    "type": "error"
+  },
+  { "inputs": [], "name": "InvalidInitialization", "type": "error" },
+  { "inputs": [], "name": "NotInitializing", "type": "error" },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "attacker",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "target",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint248",
+        "name": "nonce",
+        "type": "uint248"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32[]",
+        "name": "proof",
+        "type": "bytes32[]"
+      }
+    ],
+    "name": "FlightClubGame_Attack",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "confirmer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "cellID",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "bet",
+        "type": "uint256"
+      }
+    ],
+    "name": "FlightClubGame_ConfirmRaise",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "winner",
+        "type": "address"
+      }
+    ],
+    "name": "FlightClubGame_GameEnded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "guest",
+        "type": "address"
+      }
+    ],
+    "name": "FlightClubGame_GuestJoin",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "raiser",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "cellID",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "bet",
+        "type": "uint256"
+      }
+    ],
+    "name": "FlightClubGame_Raise",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "attackee",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "id",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "status",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint240",
+        "name": "nonce",
+        "type": "uint240"
+      }
+    ],
+    "name": "FlightClubGame_respondAttack",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "version",
+        "type": "uint64"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "bet",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "cellID", "type": "uint256" }
+    ],
+    "name": "confirmRaise",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "creator",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "guest",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "creator", "type": "address" },
+          {
+            "internalType": "address",
+            "name": "fatTokenAddr",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "soapTokenAddr",
+            "type": "address"
+          },
+          { "internalType": "uint256", "name": "bet", "type": "uint256" },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "attackRoot",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "cellRoot",
+                "type": "bytes32"
+              }
+            ],
+            "internalType": "struct RootInfo",
+            "name": "creatorRoot",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct GameInitializeInfo",
+        "name": "info",
+        "type": "tuple"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "attackRoot",
+            "type": "bytes32"
+          },
+          { "internalType": "bytes32", "name": "cellRoot", "type": "bytes32" }
+        ],
+        "internalType": "struct RootInfo",
+        "name": "root",
+        "type": "tuple"
+      }
+    ],
+    "name": "join",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "loserConfirm",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "newBet", "type": "uint256" },
+      {
+        "components": [
+          {
+            "components": [
+              { "internalType": "uint8", "name": "target", "type": "uint8" },
+              { "internalType": "uint248", "name": "nonce", "type": "uint248" }
+            ],
+            "internalType": "struct Attack",
+            "name": "attack",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              { "internalType": "uint8", "name": "id", "type": "uint8" },
+              { "internalType": "uint8", "name": "status", "type": "uint8" },
+              { "internalType": "uint240", "name": "nonce", "type": "uint240" }
+            ],
+            "internalType": "struct Cell",
+            "name": "cell",
+            "type": "tuple"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "attackProof",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "cellProof",
+            "type": "bytes32[]"
+          }
+        ],
+        "internalType": "struct RaiseProof",
+        "name": "raiseProof",
+        "type": "tuple"
+      }
+    ],
+    "name": "raise",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "uint8", "name": "target", "type": "uint8" },
+          { "internalType": "uint248", "name": "nonce", "type": "uint248" }
+        ],
+        "internalType": "struct Attack",
+        "name": "attack",
+        "type": "tuple"
+      },
+      { "internalType": "bytes32[]", "name": "proof", "type": "bytes32[]" }
+    ],
+    "name": "requestAttackOnChain",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "uint8", "name": "id", "type": "uint8" },
+          { "internalType": "uint8", "name": "status", "type": "uint8" },
+          { "internalType": "uint240", "name": "nonce", "type": "uint240" }
+        ],
+        "internalType": "struct Cell",
+        "name": "cell",
+        "type": "tuple"
+      }
+    ],
+    "name": "respondAttackOnChain",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "attacker", "type": "address" },
+      {
+        "components": [
+          { "internalType": "uint8", "name": "target", "type": "uint8" },
+          { "internalType": "uint248", "name": "nonce", "type": "uint248" }
+        ],
+        "internalType": "struct Attack",
+        "name": "attack",
+        "type": "tuple"
+      },
+      { "internalType": "bytes32[]", "name": "proof", "type": "bytes32[]" }
+    ],
+    "name": "verifyAttack",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "defender", "type": "address" },
+      {
+        "components": [
+          { "internalType": "uint8", "name": "id", "type": "uint8" },
+          { "internalType": "uint8", "name": "status", "type": "uint8" },
+          { "internalType": "uint240", "name": "nonce", "type": "uint240" }
+        ],
+        "internalType": "struct Cell",
+        "name": "cell",
+        "type": "tuple"
+      },
+      { "internalType": "bytes32[]", "name": "proof", "type": "bytes32[]" }
+    ],
+    "name": "verifyCell",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "cellID", "type": "uint256" }
+    ],
+    "name": "winnerConfirmByRaise",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "components": [
+              { "internalType": "uint8", "name": "id", "type": "uint8" },
+              { "internalType": "uint8", "name": "status", "type": "uint8" },
+              { "internalType": "uint240", "name": "nonce", "type": "uint240" }
+            ],
+            "internalType": "struct Cell[3]",
+            "name": "cells",
+            "type": "tuple[3]"
+          },
+          {
+            "internalType": "bytes32[][3]",
+            "name": "proofs",
+            "type": "bytes32[][3]"
+          }
+        ],
+        "internalType": "struct Result",
+        "name": "enemyResult",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              { "internalType": "uint8", "name": "id", "type": "uint8" },
+              { "internalType": "uint8", "name": "status", "type": "uint8" },
+              { "internalType": "uint240", "name": "nonce", "type": "uint240" }
+            ],
+            "internalType": "struct Cell[3]",
+            "name": "cells",
+            "type": "tuple[3]"
+          },
+          {
+            "internalType": "bytes32[][3]",
+            "name": "proofs",
+            "type": "bytes32[][3]"
+          }
+        ],
+        "internalType": "struct Result",
+        "name": "selfResult",
+        "type": "tuple"
+      }
+    ],
+    "name": "winnerConfirmByResult",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
