@@ -5,7 +5,7 @@ import {
 import {
   FlightClub_GameCreated
 } from "../generated/schema"
-import { Game } from "../generated/Game/Game"
+import {Game} from "../generated/templates"
 
 export function handleFlightClub_GameCreated(
   event: FlightClub_GameCreatedEvent
@@ -21,7 +21,7 @@ export function handleFlightClub_GameCreated(
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
-  Game.bind(event.params.gameCA);
+  Game.create(event.params.gameCA);
   entity.save()
 }
 
