@@ -13,7 +13,7 @@
 ```plain
 //.airplane_arb_sepolia/subgraph.yaml
 templates:...
-//.airplane_arb_sepolia/src/game-efactory.ts:handleFlightClub_GameCreated
+//.airplane_arb_sepoliaV2/src/game-efactory.ts:handleFlightClub_GameCreated
 Game.bind(event.params.gameCA); 
 ```
 
@@ -22,16 +22,20 @@ Game.bind(event.params.gameCA);
 //base example
 curl -X POST \
   -H "Content-Type: application/json" \
-  -d '{"query": "{ flightClubGameCreateds(first: 5) { id gameCA creator bet } }", "operationName": "Subgraphs", "variables": {}}' \
-  https://api.studio.thegraph.com/query/93439/airplane_arb_sepolia/version/latest
+  -d '{"query": "{ flightClubGameCreateds(first: 5) { id gameCA creator guest }}", "operationName": "Subgraphs", "variables": {}}' \
+  https://api.studio.thegraph.com/query/93439/airplane_arb_sepoliav2/version/latest
 
 
 //game List
 {
-  flightClubGameCreateds (first: 10){
+  flightClubGameCreateds(first: 5) {
+    id
     gameCA
     creator
+    guest
     bet
+    winner
+    status
   }
 }
 ```
