@@ -1,0 +1,35 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: GameFactory
+    network: arbitrum-sepolia
+    source:
+      address: "0x13604405640d7d06B9C429FDbcd172412efd46ed"
+      abi: GameFactory
+      startBlock: 102370473
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - FlightClub_GameCreated
+        - Initialized
+        - OwnershipTransferred
+        - Upgraded
+      abis:
+        - name: GameFactory
+          file: ./abis/GameFactory.json
+      eventHandlers:
+        - event: FlightClub_GameCreated(indexed address,indexed address,uint256)
+          handler: handleFlightClub_GameCreated
+        - event: Initialized(uint64)
+          handler: handleInitialized
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+      file: ./src/game-factory.ts

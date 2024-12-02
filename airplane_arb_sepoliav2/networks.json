@@ -1,0 +1,8 @@
+{
+  "arbitrum-sepolia": {
+    "GameFactory": {
+      "address": "0x13604405640d7d06B9C429FDbcd172412efd46ed",
+      "startBlock": 102370473
+    }
+  }
+}
